@@ -1,0 +1,31 @@
+﻿@page
+@model ASP.NET.CoreRazorAPP.Pages.LoginPageModel
+@{
+
+
+}
+
+
+
+
+<h3>Login Form</h3>
+<h2>@Model.Msg</h2>
+
+<form method="post">
+    <table class="table table-borderless">
+        <tr>
+            <td>Username</td>
+            <td><input type="text" asp-for="@Model.login.username" /></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="password" asp-for="@Model.login.password" /></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" value="Login" /></td>
+        </tr>
+    </table>
+</form>
+
+

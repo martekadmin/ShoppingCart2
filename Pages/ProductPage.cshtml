@@ -1,0 +1,43 @@
+﻿@page
+@model ASP.NET.CoreRazorAPP.Pages.ProductPageModel
+@{
+
+    <h1>Ürünler</h1>
+
+    <table class="table table-striped">
+
+
+
+        @{
+            foreach (var item in Model.productList)
+            {
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+
+                    <td>
+                        @item.ProductName
+                    </td>
+
+                    <td>
+                        @item.ProductCode
+                    </td>
+
+                    <td>
+                        @item.Price
+                    </td>
+
+                    <td>
+                        <a asp-page = "Sepet" asp-page-handler="Buy" asp-route-id="@item.Id" >
+                            <img src="~/images/basket.jpg" width="35px" height="35px"/>
+                        </a>
+                    </td>
+                </tr>
+            }
+
+        }
+
+    </table>
+
+}

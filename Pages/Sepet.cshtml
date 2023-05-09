@@ -1,0 +1,73 @@
+﻿@page
+@model ASP.NET.CoreRazorAPP.Pages.SepetModel
+@{
+    Layout = null;
+}
+
+<h1>sepet</h1>
+@{
+    if (Model.cart == null)
+    {
+        <h1>Sepetiniz boş!!</h1>
+    }
+    else
+    {
+        <form method="post" asp-page="Sepet" asp-page-handler="Update">
+            <table class="table table-striped">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>
+                        <input type="submit" value="Update" />
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model.cart)
+                {
+                    <tr>
+                        <td>
+                            @item.Id
+                        </td>
+                        <td>
+                            @item.ProductName
+                        </td>
+
+                        <td>
+                            @item.ProductCode
+                        </td>
+                        <td>
+                            @item.quantity
+                        </td>
+                        <td>
+                            <input type="number" name="quantities" value="@item.quantity" min="1" style="width: 50px">
+                        </td>
+                        <td>
+                            @item.Price
+                        </td>
+                        <td>
+                            @(item.Price * item.quantity) TL
+                        </td>
+                        <td>
+                            <a asp-page="Sepet" asp-page-handler="Delete" asp-route-id="@item.Id">
+                                <img src="~/images/delete.jpeg" width="35px" height="35px" />
+                            </a>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Toplam:</td>
+                    <td>@Model.total</td>
+                </tr>
+            </table>
+            <a asp-page="ProductPage"> Continue shopping </a>
+        </form>
+    }
+}

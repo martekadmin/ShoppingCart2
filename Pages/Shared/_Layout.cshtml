@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ASP.NET Shopping Cart</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ASP.NET.CoreRazorAPP.styles.css" asp-append-version="true" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style type="text/css">
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        #right-pane {
+            resize: horizontal;
+            overflow: auto;
+            position: fixed;
+            top: 0;
+            right: -450px; /* start off screen */
+            width: 450px;
+            height: 100%;
+            background-color: #f1f1f1;
+            overflow-x: hidden;
+            transition: 0.5s;
+        }
+
+            #right-pane.active {
+                right: 0; /* slide in */
+            }
+
+        .body-padding {
+            padding-right: 350px;
+            transition: 0.5s;
+        }
+
+            .body-padding.active {
+                padding-right: 0;
+            }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $('#open-pane').click(function () {
+                $('#right-pane').toggleClass('active').load("/Sepet");
+                $('body').toggleClass('body-padding');
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="open-pane" style="float: right">Sepet
+        <img src="images/basket.jpg" width="20px" height="20px" />
+    </button>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">ASP.NET.CoreRazorAPP</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/ProductPage">Ürünler</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav flex-grow-1 justify-content-end">
+                     
+                        <li class="nav-item justify-content-end">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/LoginPage">Login</a>
+                        </li>
+                    </ul>
+                    <div id="right-pane">
+                        <div id="Pane" runat="server">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - ASP.NET.CoreRazorAPP - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+ @*   <script src="~/lib/jquery/dist/jquery.min.js"></script>*@ 
+   <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
